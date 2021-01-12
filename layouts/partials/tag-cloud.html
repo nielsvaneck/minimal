@@ -1,0 +1,31 @@
+{{ if not (eq (len $.Site.Taxonomies.tags) 0) }}
+{{ $fontUnit := "rem" }}
+{{ $largestFontSize := 2.0 }}
+{{ $smallestFontSize := 1.0 }}
+{{ $fontSpread := sub $largestFontSize $smallestFontSize }}
+<!--<div>Font size unit: {{ $fontUnit }}</div>
+            <div>Font min size: {{ $smallestFontSize }}</div>
+            <div>Font max size: {{ $largestFontSize }}</div>
+            <div>Font size spread: {{ $fontSpread }}</div>-->
+
+{{ $max := len (index $.Site.Taxonomies.tags.ByCount 0).Pages }}
+<!--<div>Max tag count: {{ $max }}</div>-->
+
+{{ $min := len (index $.Site.Taxonomies.tags.ByCount.Reverse 0).Pages }}
+<!--<div>Min tag count: {{ $min }}</div>-->
+
+{{ $spread := sub $max $min }}
+<!--<div>Tag count spread: {{ $spread }}</div>-->
+
+{{ $fontStep := div $fontSpread $spread }}
+<!--<div>Font step: {{ $fontStep }}</div>-->
+
+{{ range $name, $taxonomy := $.Site.Taxonomies.tags }}
+{{ $currentTagCount := len $taxonomy.Pages }}
+{{ $currentFontSize := (add $smallestFontSize (mul (sub $currentTagCount $min) $fontStep) ) }}
+<!--Current font size: {{$currentFontSize}}-->
+<!--"{{ " /tags/" | relLangURL }}{{ $name | urlize }}" -->
+<a href="{{ $.Site.BaseURL }}tags/{{ $name | urlize }}/" class="item-tag"
+    style="font-size:{{ $currentFontSize }}{{ $fontUnit }}"><kbd>{{ $name }}</kbd></a>
+{{ end }}
+{{ end }}

@@ -54,6 +54,7 @@ img {
 
 a:link, a:visited {
     color: var(--accent);
+    font-weight: bold;
 }
 
 a.icon:hover {
