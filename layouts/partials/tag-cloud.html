@@ -25,7 +25,6 @@
 {{ $currentFontSize := (add $smallestFontSize (mul (sub $currentTagCount $min) $fontStep) ) }}
 <!--Current font size: {{$currentFontSize}}-->
 <!--"{{ " /tags/" | relLangURL }}{{ $name | urlize }}" -->
-<a href="{{ $.Site.BaseURL }}tags/{{ $name | urlize }}/" class="item-tag"
-    style="font-size:{{ $currentFontSize }}{{ $fontUnit }}"><kbd>{{ $name }}</kbd></a>
+<a href="{{ $.Site.BaseURL }}tags/{{ $name | urlize }}/" style="font-size:{{ $currentFontSize }}{{ $fontUnit }}"><kbd class="item-tag">{{ $name }}</kbd></a>
 {{ end }}
 {{ end }}
