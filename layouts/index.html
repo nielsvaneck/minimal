@@ -5,9 +5,14 @@
         {{ with .Site.Params.profilePic }} <img class="profile" src="{{ . }}"> {{ end }}
         <h1>{{ .Site.Title }}</h1>
         <h2>{{ markdownify .Site.Params.Description }}</h2>
+
         {{ partial "tag-cloud" . }}
 
         {{ with .Content }} <div class="homepage-content text-justify">{{ . }}</div> {{ end }}
+
+        {{ range ( where .Site.RegularPages "Type" "post" | first 1 ) }}
+        <div class="homepage-content text-justify"></div>last post : "<a href="{{ .Permalink }}">{{ .Title }}</a>"</div>
+        {{end}}
     </div>
 </main>
 
