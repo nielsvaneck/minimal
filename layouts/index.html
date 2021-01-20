@@ -11,7 +11,7 @@
         {{ with .Content }} <div class="homepage-content text-justify">{{ . }}</div> {{ end }}
 
         {{ range ( where .Site.RegularPages "Type" "post" | first 1 ) }}
-        <div class="homepage-content text-justify"></div>last post : "<a href="{{ .Permalink }}">{{ .Title }}</a>"</div>
+        <div class="homepage-content text-justify"></div>latest post : "<a href="{{ .Permalink }}">{{ .Title }}</a>"</div>
         {{end}}
     </div>
 </main>
